@@ -1,0 +1,46 @@
+<script>
+	var notas = [1, 2, 3, 3, 2, 1, 2, 2, 2];
+	var qtdAlunos = notas.length;
+	
+	document.write("<br>Vetor de notas original: " + notas);
+	notas.sort();
+	document.write("<br>Notas ordenadas: " + notas);
+	document.write("<br>Qtd de alunos total: " + qtdAlunos);
+	
+	
+	document.write("<br><br>===========================================");
+	if(qtdAlunos % 3 == 0){
+		var qtdGrupos = qtdAlunos / 3;
+		document.write("<br><br>É possível montar grupos de 3 em 3 alunos.");
+		document.write("<br>Qtd de grupos: " + qtdGrupos);
+		var mediaGeral = media(notas);
+		document.write("<br>A média estipulada foi: " + mediaGeral);
+		
+		for(var i = 0; i < qtdAlunos; i++){
+			for(var j = 0; j < qtdAlunos; j++){
+				for(var k = 0; k < qtdAlunos; k++){
+					var nota = (notas[i] + notas[j] + notas[k]) / 3;
+					if(nota == mediaGeral){
+						document.write("<br>Achou o grupo em: ("+i+"): " + notas[i] + ", ("+j+"): " + notas[j]  + ", ("+k+"):" + notas[k]);
+						notas.splice(i, 1);
+						notas.splice(j, 1);
+						notas.splice(k, 1);
+					}
+				}
+			}
+		}
+	}else{
+		document.write("<br><br>Não é possível montar grupos de 3 em 3 alunos.");
+	}
+
+	/**
+	* função para calcular média em qualquer vetor
+	*/
+	function media(valor){
+		var soma = 0.0;
+		for(var i = 0; i < qtdAlunos; i++){
+			soma += valor[i];
+		}
+		return soma / qtdAlunos;
+	}
+</script>
